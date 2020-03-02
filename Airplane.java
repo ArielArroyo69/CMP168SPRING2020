@@ -1,9 +1,8 @@
-public class Airplane extends Passenger {
+public class Airplane{
 
-//int[] passengers = new int[100];
-Passenger[] passengers = new Passenger[100];
-String airplaneName;
-int numPassengers;
+private Passenger[] passengers = new Passenger[0];
+private String airplaneName;
+private int numPassengers;
 
 public Airplane(){
 	passengers = new Passenger[100];
@@ -31,8 +30,21 @@ public Airplane(String planestring, int planeint){
 		passengers = new Passenger[0];
 }
 
-public void addPassenger(){
-	
+public void resizePassengerArray() {
+	Passenger[] temp = new Passenger[passengers.length];
+	for (int i = 0; i < temp.length; i++) {
+		temp[i] = passengers[i];}
+	passengers = new Passenger[passengers.length * 2];
+	for (int i = 0; i < temp.length; i++) {
+		passengers[i] = temp[i];}
+}
+
+public void addPassenger(Passenger addMe){
+	if (numPassengers < passengers.length)
+		passengers[numPassengers++] = addMe;
+	else {
+		resizePassengerArray();
+		passengers[numPassengers++] = addMe;}
 }
 
 public String getAirplaneName(){
@@ -68,7 +80,7 @@ public void setAirplaneName(String nameOfAirplane){
 
 public void printAllDetails(){
 	System.out.printf("AirplaneName: %20s | Number of Passengers: %4d | Airplane Size: %4d\n" , airplaneName, numPassengers, passengers);
-	super.printDetails();
+	 
 }
 
 public Passenger removePassenger(int kickPassenger){
