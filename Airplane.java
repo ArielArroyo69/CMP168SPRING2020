@@ -67,7 +67,7 @@ public Passenger getFirstPassenger(){
 }
 
 public Passenger getLastPassenger(){
-	return passengers[100];
+	return passengers[passengers.length-1];
 }
 
 public Passenger[] getPassengers(){
